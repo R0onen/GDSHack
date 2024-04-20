@@ -62,7 +62,7 @@ ymaps.ready(function () {
     }
   
     navigator.geolocation.getCurrentPosition(success, error, options);
-  
+    console.log(navigator)
   
   
   });
