@@ -13,9 +13,13 @@ def get_db_connection():
     )
     return conn
 
+@app.route('/')
+def main():
+    return render_template('Main.html')
 
-
-
+@app.route('/chatbot')
+def about():
+    return render_template('chatbot.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
