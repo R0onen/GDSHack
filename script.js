@@ -4,16 +4,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatbox = document.querySelector('.chatbox');
 
     // Function to load responses from JSON file
-    async function loadResponses() {
-        try {
-            const response = await fetch('responses.json');
-            if (!response.ok) throw new Error('Failed to load responses');
-            return await response.json();
-        } catch (error) {
-            console.error("Error loading responses:", error);
-            return [];
-        }
+
+
+    function loadResponses() {
+        return fetch('responses.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .catch(error => {
+                console.error('Error during fetch:', error);
+                throw error; // This will propagate the error so that it can be handled by the caller
+            });
     }
+    
+    
 
     // Function to save chat history to JSON file - simulated with localStorage
     function saveChatHistory(messageData) {
@@ -32,9 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to find response for a message
     const findResponse = async (userMessage) => {
-        const responses = await loadResponses();
-        return responses.find(response => userMessage.toLowerCase().includes(response.keyword.toLowerCase()));
-    }
+        try {
+            const responses = await loadResponses();
+            return responses.find(response => userMessage.toLowerCase().includes(response.keyword.toLowerCase()));
+        } catch (error) {
+            console.error("Error while fetching responses:", error);
+            // Handle the error gracefully, perhaps by returning a default response
+            return { answer: "I'm having trouble fetching the responses right now. Please try again later.", bus: '', price: '' };
+        }
+    };
+    
 
     // Function to handle sending and receiving messages
     const handleChat = async () => {
