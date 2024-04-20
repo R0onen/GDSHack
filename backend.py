@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template
 import database_conn as dbc
 import psycopg2
 
@@ -15,10 +15,10 @@ def get_db_connection():
 
 @app.route('/')
 def main():
-    return render_template('Main.html')
+    return render_template('main.html')
 
 @app.route('/chatbot')
-def about():
+def chatbot():
     return render_template('chatbot.html')
 
 if __name__ == '__main__':
