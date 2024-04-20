@@ -24,4 +24,22 @@ def get_column_names(table_name):
             conn.close()
     return column_names
 
-print(get_column_names('coordinates'))
+def getData(myTable):
+    conn = psycopg2.connect(
+        dbname=db_name,
+        user=user,
+        password=password,
+        host=host
+    )
+    try:
+        cur = conn.cursor()
+        cur.execute(f"SELECT * FROM {myTable}")
+        return cur.fetchall()
+    except Exception as error:
+        print("Error in transaction. Reverting all other operations of a transaction", error)
+        conn.rollback()
+    finally:
+        if conn:
+            conn.close()
+
+print(getData('coordinates'))
