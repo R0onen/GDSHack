@@ -1,9 +1,15 @@
 ymaps.ready(function () {
 
-    let myMap = new ymaps.Map('map-test', {
+    let myMap = new ymaps.Map('map', {
       center: [51.12825001, 71.4304722322],
       zoom: 15,
-      controls: ['routePanelControl']
+      controls: ['routePanelControl'],
+      maxBounds: [
+        [51.031193, 71.195574],
+        [51.250903, 71.638461]
+      ],
+      minZoom: 10,
+      maxZoom: 15
     });
   
     let control = myMap.controls.get('routePanelControl');
@@ -21,24 +27,7 @@ ymaps.ready(function () {
       timeout: 5000,
       maximumAge: 0
     };
-    function setDestination(input) {
-      let address = getAttractions(input); // This function call should be linked to your chatbot response function
-    
-      if (address) {
-        // If an address was found, set it as the destination
-        control.routePanel.state.set({
-          type: 'masstransit',
-          fromEnabled: false,
-          from: 'Your current location', // You might want to get the user's actual location here
-          toEnabled: true,
-          to: address,
-        });
-      } else {
-        // Handle the case where the input is not recognized as an attraction
-        console.log("Attraction not found.");
-      }
-    }
-    
+
     function success(pos) {
       const crd = pos.coords;
   
@@ -79,7 +68,5 @@ ymaps.ready(function () {
     }
   
     navigator.geolocation.getCurrentPosition(success, error, options);
-
-    ymaps.ready(initMap);
   
   });
