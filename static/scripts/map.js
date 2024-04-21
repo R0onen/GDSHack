@@ -1,6 +1,6 @@
 ymaps.ready(function () {
 
-    let myMap = new ymaps.Map('map', {
+    let myMap = new ymaps.Map('map-test', {
       center: [51.12825001, 71.4304722322],
       zoom: 15,
       controls: ['routePanelControl'],
