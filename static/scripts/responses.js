@@ -1,22 +1,14 @@
 function getBotResponse(input) {
     var lowerInput = input.toLowerCase();
 
-    //rock paper scissors
-    if (input == "rock") {
-        return "paper";
-    } else if (input == "paper") {
-        return "scissors";
-    } else if (input == "scissors") {
-        return "rock";
-    }
 
     // Simple responses
-    if (input == "hello") {
-        return "Hello there!";
-    } else if (input == "goodbye") {
-        return "Talk to you later!";
+    if (input == "привет") {
+        return "Привет! Я здесь, чтобы помочь тебе определить, куда ты хочешь отправиться и предоставить всю необходимую информацию о выбранных достопримечательностях в Астане. Куда бы ты хотел пойти или что тебя интересует?";
+    } else if (input == "пока") {
+        return "До скорой встречи!";
     } else {
-        return "Try asking something else!";
+        return "Попробуйте спросить что-нибудь еще!";
     }
     if (lowerInput == "байтерек") {
         return "Астана, бульвар Нуржол, 14";
