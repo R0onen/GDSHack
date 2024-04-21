@@ -28,7 +28,7 @@ ymaps.ready(function () {
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
   
-  
+      let address = getAttractions(input)
       let reverseGeocoder = ymaps.geocode([crd.latitude, crd.longitude]);
       let locationText = null;
       reverseGeocoder.then(function (res) {
@@ -40,7 +40,7 @@ ymaps.ready(function () {
           fromEnabled: false,
           from: locationText,
           toEnabled: true,
-          to: `${city}, Международная специализированная выставка Экспо-2017`,
+          to: `${city}, ${address}`,
         });
       });
   
