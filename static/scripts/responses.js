@@ -17,14 +17,14 @@ function getBotResponse(input) {
         return "Try asking something else!";
     }
 }
-function getAttractions(input){
-    if(input == "байтерек"){
+function getAttractions(input) {
+    var lowerInput = input.toLowerCase();
+
+    if (lowerInput == "байтерек") {
         return "бульвар Нуржол, 14";
-    }
-    if(input == "хан шатыр"){
+    } else if (lowerInput == "хан шатыр") {
         return "проспект Туран, 37";
-    }
-    if(input == "дворец мира и согласия"){
-        return "проспект Тауелсиздик, 57"
+    } else if (lowerInput == "дворец мира и согласия") {
+        return "проспект Тауелсіздік, 57";
     }
 }
