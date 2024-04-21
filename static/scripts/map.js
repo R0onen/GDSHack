@@ -21,14 +21,31 @@ ymaps.ready(function () {
       timeout: 5000,
       maximumAge: 0
     };
-  
+    function setDestination(input) {
+      let address = getAttractions(input); // This function call should be linked to your chatbot response function
+    
+      if (address) {
+        // If an address was found, set it as the destination
+        control.routePanel.state.set({
+          type: 'masstransit',
+          fromEnabled: false,
+          from: 'Your current location', // You might want to get the user's actual location here
+          toEnabled: true,
+          to: address,
+        });
+      } else {
+        // Handle the case where the input is not recognized as an attraction
+        console.log("Attraction not found.");
+      }
+    }
+    
     function success(pos) {
       const crd = pos.coords;
   
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
   
-      let address = getAttractions(input)
+      let address = getAttractions(input);
       let reverseGeocoder = ymaps.geocode([crd.latitude, crd.longitude]);
       let locationText = null;
       reverseGeocoder.then(function (res) {
@@ -63,6 +80,6 @@ ymaps.ready(function () {
   
     navigator.geolocation.getCurrentPosition(success, error, options);
 
-  
+    ymaps.ready(initMap);
   
   });

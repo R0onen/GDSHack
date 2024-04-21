@@ -21,10 +21,10 @@ function getAttractions(input) {
     var lowerInput = input.toLowerCase();
 
     if (lowerInput == "байтерек") {
-        return "бульвар Нуржол, 14";
+        return "Астана, бульвар Нуржол, 14";
     } else if (lowerInput == "хан шатыр") {
-        return "проспект Туран, 37";
+        return "Астана, проспект Туран, 37";
     } else if (lowerInput == "дворец мира и согласия") {
-        return "проспект Тауелсіздік, 57";
+        return "Астана, проспект Тауелсіздік, 57";
     }
 }
