@@ -1,4 +1,6 @@
 function getBotResponse(input) {
+    var lowerInput = input.toLowerCase();
+
     //rock paper scissors
     if (input == "rock") {
         return "paper";
@@ -16,10 +18,6 @@ function getBotResponse(input) {
     } else {
         return "Try asking something else!";
     }
-}
-function getAttractions(input) {
-    var lowerInput = input.toLowerCase();
-
     if (lowerInput == "байтерек") {
         return "Астана, бульвар Нуржол, 14";
     } else if (lowerInput == "хан шатыр") {
